@@ -1,0 +1,22 @@
+workloads:
+  - name: B0-baseline
+    id: b0
+    dataset: synthetic
+    latency_ms: 120
+    cache_ops: 8
+    confidence: 0.88
+    status: pass
+  - name: B1-reference-policy
+    id: b1
+    dataset: synthetic
+    latency_ms: 96
+    cache_ops: 6
+    confidence: 0.92
+    status: pass
+  - name: B2-integrated-policy
+    id: b2
+    dataset: synthetic
+    latency_ms: 88
+    cache_ops: 5
+    confidence: 0.95
+    status: pass

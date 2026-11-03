@@ -1,0 +1,53 @@
+{
+  "run_id": "acceptance-vulntriage-001",
+  "status": "completed",
+  "summary": {
+    "workflow": "vulntriage",
+    "nodes_completed": ["N0", "N1", "N2", "N3[0]", "N3[1]", "N3[2]", "N4", "N5"],
+    "nodes_failed": [],
+    "advisories_investigated": 4,
+    "tools_executed": 9,
+    "cache_operations_planned": 3,
+    "cache_operations_confirmed": true
+  },
+  "report_schema_valid": true,
+  "verdicts": [
+    {
+      "advisory_id": "GHSA-1111",
+      "package": "demo-repo",
+      "verdict": "reachable",
+      "evidence": [{"file": "vuln/pickle_bad/__init__.py", "line": 2}],
+      "reason": "Repository code imports pickle directly, which is unsafe deserialization.",
+      "fix": "Replace pickle with json or explicit safe serialization.",
+      "confidence": 0.9
+    },
+    {
+      "advisory_id": "GHSA-2222",
+      "package": "demo-repo",
+      "verdict": "reachable",
+      "evidence": [{"file": "vuln/xss/__init__.py", "line": 4}],
+      "reason": "Repository constructs a template string from user input, which is unsafe HTML rendering.",
+      "fix": "Escape user input before rendering or use a templating engine that does so by default.",
+      "confidence": 0.85
+    },
+    {
+      "advisory_id": "GHSA-3333",
+      "package": "demo-repo",
+      "verdict": "not_reachable",
+      "evidence": [{"file": "safe/__init__.py", "line": 2}],
+      "reason": "No direct dependency on vulnerable network libraries in analyzed source.",
+      "fix": "Remove unused vulnerable dependency from production code paths.",
+      "confidence": 0.9
+    },
+    {
+      "advisory_id": "GHSA-4444",
+      "package": "demo-repo",
+      "verdict": "needs_human",
+      "evidence": [],
+      "reason": "Investigation inconclusive; further manual inspection recommended.",
+      "fix": "Manual verification recommended due to investigation scope limitations.",
+      "confidence": 0.0
+    }
+  ],
+  "artifacts_present": ["trace.jsonl", "latest.json", "report.md"]
+}
